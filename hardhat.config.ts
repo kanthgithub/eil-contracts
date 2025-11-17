@@ -1,42 +1,29 @@
-import hardhatToolboxViemPlugin from '@nomicfoundation/hardhat-toolbox-viem'
-import { configVariable, defineConfig } from 'hardhat/config'
+import { HardhatUserConfig } from 'hardhat/config'
+import networkHelpersPlugin from '@nomicfoundation/hardhat-network-helpers'
+import viemPlugin from '@nomicfoundation/hardhat-viem'
+import viemAssertionsPlugin from '@nomicfoundation/hardhat-viem-assertions'
 
-export default defineConfig({
-  plugins: [hardhatToolboxViemPlugin],
+const config: HardhatUserConfig = {
+  plugins: [
+    viemPlugin,
+    viemAssertionsPlugin,
+    networkHelpersPlugin
+  ],
   solidity: {
-    profiles: {
-      default: {
+    compilers: [
+      {
+        version: '0.8.28',
         settings: {
-          viaIR: true,
-        },
-        version: '0.8.30',
-      },
-      production: {
-        version: '0.8.30',
-        settings: {
-          viaIR: true,
-          optimizer: {
-            enabled: true,
-            runs: 200,
-          },
-        },
-      },
-    },
+          evmVersion: 'cancun',
+          optimizer: { enabled: true, runs: 1000000 },
+          viaIR: true
+        }
+      }
+    ]
   },
-  networks: {
-    hardhatMainnet: {
-      type: 'edr-simulated',
-      chainType: 'l1',
-    },
-    hardhatOp: {
-      type: 'edr-simulated',
-      chainType: 'op',
-    },
-    sepolia: {
-      type: 'http',
-      chainType: 'l1',
-      url: configVariable('SEPOLIA_RPC_URL'),
-      accounts: [configVariable('SEPOLIA_PRIVATE_KEY')],
-    },
-  },
-})
+  paths: {
+    sources: './src/',
+  }
+}
+
+export default config

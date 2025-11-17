@@ -4,7 +4,8 @@
   "type": "module",
   "license": "MIT",
   "scripts": {
-    "build": "hardhat compile"
+    "build": "hardhat compile",
+    "clean": "hardhat clean"
   },
   "dependencies": {
     "@openzeppelin/contracts": "^5.5.0",
