@@ -1,12 +1,17 @@
 {
   "name": "@eil-protocol/contracts",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "type": "module",
   "license": "MIT",
   "scripts": {
     "build": "hardhat compile",
-    "clean": "hardhat clean"
+    "clean": "hardhat clean",
+    "prepack": "yarn build"
   },
+  "files": [
+    "artifacts",
+    "src"
+  ],
   "dependencies": {
     "@openzeppelin/contracts": "^5.5.0",
     "@account-abstraction/contracts": "^0.9.0-rc.1"

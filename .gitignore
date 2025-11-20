@@ -21,3 +21,5 @@
 .DS_Store
 /.idea/
 yarn.lock
+/yarn-error.log
+*.tgz
